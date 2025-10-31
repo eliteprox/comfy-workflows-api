@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   comfy-api:
-    build: .
+    image: eliteencoder/comfy-workflows-api:latest
     container_name: comfy-api
     ports:
       - "8787:8787"

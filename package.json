@@ -1,0 +1,15 @@
+{
+  "name": "comfy-workflows-api",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "hono": "^4.3.4",
+    "nanoid": "^5.0.6"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "start": "node server.js"
+  }
+}

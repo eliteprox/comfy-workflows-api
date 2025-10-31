@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8787:8787"
+    environment:
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-super-secret}
+      - CORS_ALLOW_ORIGIN=*
+      - PORT=8787
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+

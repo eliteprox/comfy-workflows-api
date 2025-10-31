@@ -1,0 +1,11 @@
+node_modules/
+.wrangler/
+dist/
+*.log
+.env
+.env.local
+.dev.vars
+workflows.json
+package-lock.json
+.DS_Store
+

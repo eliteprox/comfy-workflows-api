@@ -1,0 +1,6 @@
+# Copy this file to .dev.vars for local development with wrangler dev
+# Wrangler automatically loads .dev.vars when you run: wrangler dev
+
+ADMIN_API_KEY=super-secret
+CORS_ALLOW_ORIGIN=*
+

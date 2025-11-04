@@ -20,7 +20,16 @@ app.use((req, res, next) => {
 })
 
 async function readAll() {
-  try { return JSON.parse(await fs.readFile(DATA_FILE, 'utf-8')) } catch { return [] }
+  try {
+    const content = await fs.readFile(DATA_FILE, 'utf-8')
+    return JSON.parse(content)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      // File doesn't exist, create it with empty array
+      await writeAll([])
+    }
+    return []
+  }
 }
 async function writeAll(items) {
   await fs.writeFile(DATA_FILE, JSON.stringify(items, null, 2))
@@ -84,5 +93,22 @@ app.delete('/workflows/:id', async (req, res) => {
   res.json({ ok: true })
 })
 
-app.listen(PORT, () => console.log(`API running on http://0.0.0.0:${PORT}`))
+const server = app.listen(PORT, () => console.log(`API running on http://0.0.0.0:${PORT}`))
+
+// Graceful shutdown handling
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, shutting down gracefully...')
+  server.close(() => {
+    console.log('Server closed')
+    process.exit(0)
+  })
+})
+
+process.on('SIGINT', () => {
+  console.log('SIGINT received, shutting down gracefully...')
+  server.close(() => {
+    console.log('Server closed')
+    process.exit(0)
+  })
+})
 

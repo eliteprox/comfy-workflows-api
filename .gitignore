@@ -6,6 +6,7 @@ dist/
 .env.local
 .dev.vars
 workflows.json
+data/
 package-lock.json
 .DS_Store
 

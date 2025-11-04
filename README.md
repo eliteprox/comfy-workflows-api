@@ -52,10 +52,22 @@ docker build -t comfy-workflows-api .
 docker run -p 8787:8787 -e ADMIN_API_KEY=super-secret comfy-workflows-api
 ```
 
+### GitHub Actions
+
+The repository includes a GitHub Actions workflow that automatically builds and pushes the Docker image to `eliteencoder/comfy-workflows-api` on Docker Hub when committing to main.
+
+**Setup:**
+1. Go to your GitHub repository settings → Secrets and variables → Actions
+2. Add the following secrets:
+   - `DOCKERHUB_USERNAME` – Your Docker Hub username
+   - `DOCKERHUB_TOKEN` – Your Docker Hub access token ([create one here](https://hub.docker.com/settings/security))
+
 ## Environment Variables
 
 - `PORT` – Server port (default: 8787)
 - `ADMIN_API_KEY` – Required for write operations
 - `CORS_ALLOW_ORIGIN` – CORS origin (default: *)
 - `DATA_FILE` – Path to workflows JSON file (default: ./workflows.json)
+
+**Note:** When using Docker Compose, the workflows data is stored in a `./data` directory which is mounted as a volume. This ensures data persistence across container restarts.
 

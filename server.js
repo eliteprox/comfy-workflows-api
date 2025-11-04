@@ -42,6 +42,14 @@ app.get('/workflows', async (_req, res) => {
   res.json(items.map(w => ({ ...w, source: 'public-api' })))
 })
 
+app.get('/workflows/:id', async (req, res) => {
+  const { id } = req.params
+  const items = await readAll()
+  const item = items.find(x => x.id === id)
+  if (!item) return res.status(404).json({ error: 'not found' })
+  res.json({ ...item, source: 'public-api' })
+})
+
 app.post('/workflows', async (req, res) => {
   if (!requireAdmin(req, res)) return
   const { name, prompts, author, tags } = req.body || {}

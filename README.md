@@ -39,7 +39,8 @@ wrangler deploy
 
 ## Endpoints
 
-* `GET /workflows` – public
+* `GET /workflows` – public, lists all workflows
+* `GET /workflows/:id` – public, retrieves a specific workflow
 * `POST /workflows` – requires `Authorization: Bearer <ADMIN_API_KEY>`
 * `PUT /workflows/:id` – requires `Authorization: Bearer <ADMIN_API_KEY>`
 * `DELETE /workflows/:id` – requires `Authorization: Bearer <ADMIN_API_KEY>`
